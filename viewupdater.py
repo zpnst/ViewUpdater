@@ -6,8 +6,7 @@ import multiprocessing
 from datetime import datetime
 from selenium import webdriver
 from collections import Counter
-from multiprocessing import Pool 
-from fake_useragent import UserAgent
+from multiprocessing import Pool
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
@@ -18,7 +17,6 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 
 
 path = "linksfolder"
-useragent = UserAgent
 driver_path = os.path.abspath("driver\\geckodriver.exe")
 
 _useragentslist = open("sources\\useragents.txt").readlines()
@@ -33,7 +31,7 @@ service = Service(executable_path=driver_path, log_path='nul')
 
 options = webdriver.FirefoxOptions()  
 options.add_argument('-headless')
-options.add_argument(f"user-agent={useragent.random}")
+options.add_argument(f"user-agent={randomuserragent}")
 options.add_argument("--disable-blink-features=AutomationControlled")
 options.add_argument('--log-level=3')
 options.binary_location=location
