@@ -1,4 +1,5 @@
 # ViewUpdater
+# Requires Firefox version 112.0.1
 
 The program works through geckodriver and is designed to cheat views on a particular site. It was used to improve the statistics of organizations on maps.
 
