@@ -230,7 +230,7 @@ def main ():
 
     except Exception as e:
 
-        print(f"\nОШИБКА: {e}")
+        print(f"\ERROR: {e}")
 
         exception = input("\nThe program generated an error. \nCheck if you have added any files with links to the 'linksfolder'"\
             "\nOr check your internet connection. \nAfter that, restart the program:)\n\nPress Enter to end the program: ")
