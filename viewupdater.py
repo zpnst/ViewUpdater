@@ -32,21 +32,20 @@ location = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 service = Service(executable_path=driver_path, log_path='nul')
 
 options = webdriver.FirefoxOptions()  
-#options.add_argument('-headless')
+options.add_argument('-headless')
 options.add_argument(f"user-agent={useragent.random}")
 options.add_argument("--disable-blink-features=AutomationControlled")
 options.add_argument('--log-level=3')
 options.binary_location=location
 
+
 def randomize(path):
 
 
     all = [] 
-    
     contents = os.listdir(path)
 
     for content in contents:
-
         _tools = open(f"{path}\\{content}").readlines()
         all.append([x.strip() for x in _tools])
 
@@ -56,46 +55,37 @@ def randomize(path):
 
     return rand_tools
 
+
 def cleaner(urls):
 
     val = []
     result = []
 
     len_urls = [len(x) for x in urls]
-
-    cnt_urls = Counter(urls)
-    set_urls = set(urls)
-
     cnt_len_urls = Counter(len_urls)
-    set_len_urls = set(len_urls)
 
-    
     for values in dict(cnt_len_urls).values():
-
         val.append(values)
 
     max_val = max(val)
-
+    
     for key, value in dict(cnt_len_urls).items():
-
         if value == max_val:
-
             curr_key = key
 
     for url in urls:
-
         if len(url) == curr_key:
-
             result.append(url)
 
     return result
+
 
 def mainest(links, kount):
 
     links_bunches = []
 
     for link in range(0, len(links) - (kount-1), kount):
-
+        
         if kount == 5:
             links_bunches.append([links[link], links[link+1], links[link+2], links[link+3], links[link+4]])
         if kount == 4:
@@ -117,15 +107,6 @@ def mainest(links, kount):
 
     return links_bunches
 
-def elements(element):
-
-    if element.is_enabled() == True:
-
-        element.click()
-
-    else: 
-
-        pass
 
 def get_data(url):
 
@@ -154,7 +135,7 @@ def begining(kount):
 
     rand_tools = randomize(path)
     links = cleaner(rand_tools)
-    
+
     links_bunches = mainest(links, kount)
 
     links_kount = 0
@@ -162,53 +143,53 @@ def begining(kount):
     
         if len(link_bunch) == 5:
             print(f"""
-            ВРЕМЯ - [{str(datetime.now().time())[:8]}], ДАННЫЕ ССЫЛКИ НАХОДЯТСЯ В РАБОТЕ:
+            TIME - [{str(datetime.now().time())[:8]}], THESE LINKS ARE IN THE WORK:
 
-            1)Cсылка - {link_bunch[0]}
-            2)Cсылка - {link_bunch[1]}
-            3)Cсылка - {link_bunch[2]}
-            4)Cсылка - {link_bunch[3]}
-            5)Ссылка - {link_bunch[4]} 
+            1)Link - {link_bunch[0]}
+            2)Link - {link_bunch[1]}
+            3)Link - {link_bunch[2]}
+            4)Link - {link_bunch[3]}
+            5)Link - {link_bunch[4]} 
 
-            ОБРАБОТАННО {links_kount} ИЗ {len(links)} ССЫЛОК
+            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 4:
             print(f"""
-            ВРЕМЯ - [{str(datetime.now().time())[:8]}], ДАННЫЕ ССЫЛКИ НАХОДЯТСЯ В РАБОТЕ:
+            TIME - [{str(datetime.now().time())[:8]}], THESE LINKS ARE IN THE WORK:
 
-            1)Cсылка - {link_bunch[0]}
-            2)Cсылка - {link_bunch[1]}
-            3)Cсылка - {link_bunch[2]}
-            4)Cсылка - {link_bunch[3]} 
+            1)Link - {link_bunch[0]}
+            2)Link - {link_bunch[1]}
+            3)Link - {link_bunch[2]}
+            4)Link - {link_bunch[3]} 
 
-            ОБРАБОТАННО {links_kount} ИЗ {len(links)} ССЫЛОК
+            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 3:
             print(f"""
-            ВРЕМЯ - [{str(datetime.now().time())[:8]}], ДАННЫЕ ССЫЛКИ НАХОДЯТСЯ В РАБОТЕ:
+            TIME - [{str(datetime.now().time())[:8]}], THESE LINKS ARE IN THE WORK:
 
-            1)Cсылка - {link_bunch[0]}
-            2)Cсылка - {link_bunch[1]}
-            3)Cсылка - {link_bunch[2]}
+            1)Link - {link_bunch[0]}
+            2)Link - {link_bunch[1]}
+            3)Link - {link_bunch[2]}
 
-            ОБРАБОТАННО {links_kount} ИЗ {len(links)} ССЫЛОК
+            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 2:
             print(f"""
-            ВРЕМЯ - [{str(datetime.now().time())[:8]}], ДАННЫЕ ССЫЛКИ НАХОДЯТСЯ В РАБОТЕ:
+            TIME - [{str(datetime.now().time())[:8]}], THESE LINKS ARE IN THE WORK:
 
-            1)Cсылка - {link_bunch[0]}
-            2)Cсылка - {link_bunch[1]} 
+            1)Link - {link_bunch[0]}
+            2)Link - {link_bunch[1]} 
 
-            ОБРАБОТАННО {links_kount} ИЗ {len(links)} ССЫЛОК
+            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 1:
             print(f"""
-            ВРЕМЯ - [{str(datetime.now().time())[:8]}], ДАННАЯ ССЫЛКА НАХОДИТСЯ В РАБОТЕ:
+            TIME - [{str(datetime.now().time())[:8]}], THESE LINKS ARE IN THE WORK:
 
-            1)Cсылка - {link_bunch[0]}
+            1)Link - {link_bunch[0]}
 
-            ОБРАБОТАННО {links_kount} ИЗ {len(links)} ССЫЛОК
+            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
             """)
 
         links_kount  += len(link_bunch)
@@ -217,7 +198,7 @@ def begining(kount):
         poo = Pool(processes=process_count)
         poo.map(get_data, link_bunch)
 
-    end = input(f"ПРОГРАММА ОБОШЛА ВСЕ ЗАГРУЖЕННЫЕ ССЫЛКИ ({links_kount} шт) =)\nДля завершения программы нажмите на Enter: ")
+    end = input(f"THE PROGRAM BYPASSED ALL UPLOADED LINKS ({links_kount}) =)\nPress Enter to end the program: ")
     if end == "":
         
         time.sleep(2)
@@ -226,20 +207,20 @@ def begining(kount):
 
 def starting():
         
-    print("\nНАСТРОЙКИ РАБОТЫ ПРОГРАММЫ: \n")
+    print("\nPROGRAM OPERATION SETTINGS:\n")
 
-    links_kount = input("Введите количество окон(цифра от 1 до 5), которое бдует открываться за одну прокрутку: ")
+    links_kount = input("Enter the number of windows (a number from 1 to 5) that will open in one scroll: ")
 
-    if links_kount == "1" or links_kount == "2" or links_kount == "3" or links_kount == "4" or links_kount == "5" or links_kount == "6" or links_kount == "7":
+    if links_kount == "1" or links_kount == "2" or links_kount == "3" or links_kount == "4" or links_kount == "5":
             
-            start = input("\nЧтобы начать нажмите на Enter: ")
+            start = input("\nPress Enter to start: ")
 
             if start.lower() == "":
 
                 begining(int(links_kount))
     else:
-        print("""Вы ввели не то число, пройдите настройку заново. 
-На это шаге, вам нужно было ввести цифру от 1 до 5, это в целях безопасности вашего компьютера=)""")
+        print("""You entered the wrong number, go through the setup again.
+At this step, you had to enter a number from 1 to 5, this is for the security of your computer =)""")
         starting()
 
 
@@ -253,8 +234,8 @@ def main ():
 
         print(f"\nОШИБКА: {e}")
 
-        exception = input("\nПрограмма выдала ошибку. \nПроверьте, добавили ли вы файлы с ссылками в папку 'linksfolder'"\
-            "\nИли же проверьте подключение к интернету. \nПосле этого перезапустите программу:)\n\nЧтобы завершить программу нажмите на Enter: ")
+        exception = input("\nThe program generated an error. \nCheck if you have added any files with links to the 'linksfolder'"\
+            "\nOr check your internet connection. \nAfter that, restart the program:)\n\nPress Enter to end the program: ")
         
         if exception == "":
             time.sleep(2)
