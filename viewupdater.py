@@ -149,7 +149,7 @@ def begining(kount):
             4)Link - {link_bunch[3]}
             5)Link - {link_bunch[4]} 
 
-            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
+            PROCESSED {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 4:
             print(f"""
@@ -160,7 +160,7 @@ def begining(kount):
             3)Link - {link_bunch[2]}
             4)Link - {link_bunch[3]} 
 
-            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
+            PROCESSED {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 3:
             print(f"""
@@ -170,7 +170,7 @@ def begining(kount):
             2)Link - {link_bunch[1]}
             3)Link - {link_bunch[2]}
 
-            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
+            PROCESSED {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 2:
             print(f"""
@@ -179,7 +179,7 @@ def begining(kount):
             1)Link - {link_bunch[0]}
             2)Link - {link_bunch[1]} 
 
-            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
+            PROCESSED {links_kount} OUT OF {len(links)} LINKS
             """)
         if len(link_bunch) == 1:
             print(f"""
@@ -187,7 +187,7 @@ def begining(kount):
 
             1)Link - {link_bunch[0]}
 
-            PROCESSED  {links_kount} OUT OF {len(links)} LINKS
+            PROCESSED {links_kount} OUT OF {len(links)} LINKS
             """)
 
         links_kount  += len(link_bunch)
